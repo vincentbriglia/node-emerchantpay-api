@@ -1,0 +1,43 @@
+{
+  "name": "node-emerchantpay-api",
+  "version": "0.1.0",
+  "description": "emerchantpay web service API library for node backend",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "gulp test",
+    "coveralls": "gulp report-coverage"
+  },
+  "author": "Vincent Briglia <vincent@jivaro.com>",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^0.9.0",
+    "lodash": "^3.8.0",
+    "request": "^2.55.0",
+    "xml2js": "^0.4.8"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-coveralls": "^0.1.4",
+    "gulp-eslint": "^0.11.1",
+    "gulp-istanbul": "^0.9.0",
+    "gulp-mocha": "^2.0.1",
+    "mocha": "^2.2.4",
+    "mocha-sinon": "^1.1.4",
+    "sinon": "^1.14.1"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vincentbriglia/node-emerchantpay-api.git"
+  },
+  "keywords": [
+    "emerchantpay"
+  ],
+  "bugs": {
+    "url": "https://github.com/vincentbriglia/node-emerchantpay-api/issues"
+  },
+  "homepage": "https://github.com/vincentbriglia/node-emerchantpay-api#readme"
+}
