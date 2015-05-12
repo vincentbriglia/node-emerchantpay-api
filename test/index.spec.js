@@ -38,9 +38,21 @@ describe('eMerchantPay API', function () {
             done();
         });
 
+        it('should allow for custom base url', function (done) {
+            empAPI = new EmpAPI({
+                'client_id': clientId,
+                'api_key': apiKey
+            });
+            empAPI.setBaseUrl('http://proxy.aws');
+            assert.equal(empAPI.config.baseUrl, 'http://proxy.aws');
+            done();
+        });
+
     });
 
     describe('well formed responses', function () {
+
+        var order;
 
         beforeEach(function (done) {
 
@@ -48,6 +60,8 @@ describe('eMerchantPay API', function () {
                 'client_id': clientId,
                 'api_key': apiKey
             });
+
+            order = empAPI.order();
 
             sinon
               .stub(request, 'post')
@@ -62,9 +76,11 @@ describe('eMerchantPay API', function () {
         });
 
         it('can convert xml response to json', function (done) {
-            empAPI.request('', {
+
+            order.search.post({
                 date: '2015-05-03'
             }, function (err, results) {
+
                 assert.equal(err, null);
                 assert.equal(results.orders.num_records, 0);
                 done();
@@ -74,7 +90,7 @@ describe('eMerchantPay API', function () {
 
         it('can also get raw xml response', function (done) {
             empAPI.setConfig('parseXML', false);
-            empAPI.request('', {
+            order.search.post({
                 date: '2015-05-03'
             }, function (err, results) {
                 assert.equal(err, null);
@@ -88,11 +104,16 @@ describe('eMerchantPay API', function () {
 
     describe('malformed responses', function () {
 
+        var order;
+
         beforeEach(function (done) {
             empAPI = new EmpAPI({
                 'client_id': clientId,
                 'api_key': apiKey
             });
+
+            order = empAPI.order();
+
             done();
         });
 
@@ -107,14 +128,13 @@ describe('eMerchantPay API', function () {
               .stub(request, 'post')
               .yields('an error description');
 
-            empAPI.request('', {
+            order.search.post({
                 date: '2015-05-03'
             }, function (err, results) {
                 assert.equal(err, 'an error description');
                 assert.equal(results, null);
                 done();
             });
-
         });
 
         it('throws an error on malformed xml response', function (done) {
@@ -123,7 +143,7 @@ describe('eMerchantPay API', function () {
               .stub(request, 'post')
               .yields(null, {}, '<?xml version="1.0" encoding="UTF-8"?><orders<num_records>0</num_records></orders>');
 
-            empAPI.request('', {
+            order.search.post({
                 date: '2015-05-03'
             }, function (err, results) {
                 assert.equal(results, null);
@@ -131,6 +151,18 @@ describe('eMerchantPay API', function () {
                 done();
             });
 
+        });
+
+        it('throws an error when there is a missing parameter', function (done) {
+
+            sinon
+              .stub(request, 'post');
+
+            order.search.post({}, function (err, results) {
+                assert.equal(results, null);
+                assert.equal(_.isError(err), true);
+                done();
+            });
         });
 
     });
