@@ -4,5 +4,6 @@
 		"node_modules/**",
 		"www/config.js"
 	],
+	"disallowTrailingWhitespace": true,
  	"validateIndentation": 4
 }
