@@ -8,8 +8,11 @@ var assert = require('assert'),
 describe('eMerchantPay API', function () {
 
     var empAPI,
-        clientId = '123456',
-        apiKey = 'abcdefghijklmnopqrstuvwxyz';
+        clientId = 123456,
+        apiKey = '164684684684684',
+        validXML = '<?xml version="1.0" encoding="UTF-8"?><orders><num_records>0</num_records></orders>',
+        validJSON = JSON.parse('{"orders":{"num_records":["0"]}}'),
+        invalidXML = '<?xml version="1.0" encoding="UTF-8"?><orders<num_records>0</num_records></orders>';
 
     describe('configuration', function () {
 
@@ -65,7 +68,7 @@ describe('eMerchantPay API', function () {
 
             sinon
               .stub(request, 'post')
-              .yields(null, {}, '<?xml version="1.0" encoding="UTF-8"?><orders><num_records>0</num_records></orders>');
+              .yields(null, {}, validXML);
 
             done();
         });
@@ -94,7 +97,7 @@ describe('eMerchantPay API', function () {
                 date: '2015-05-03'
             }, function (err, results) {
                 assert.equal(err, null);
-                assert.equal(results, '<?xml version="1.0" encoding="UTF-8"?><orders><num_records>0</num_records></orders>');
+                assert.equal(results, validXML);
                 empAPI.setConfig('parseXML', true);
                 done();
             });
@@ -141,7 +144,7 @@ describe('eMerchantPay API', function () {
 
             sinon
               .stub(request, 'post')
-              .yields(null, {}, '<?xml version="1.0" encoding="UTF-8"?><orders<num_records>0</num_records></orders>');
+              .yields(null, {}, invalidXML);
 
             order.search.post({
                 date: '2015-05-03'
@@ -161,6 +164,21 @@ describe('eMerchantPay API', function () {
             order.search.post({}, function (err, results) {
                 assert.equal(results, null);
                 assert.equal(_.isError(err), true);
+                done();
+            });
+        });
+
+        it('succeeds when s a required parameter 2', function (done) {
+
+            sinon
+              .stub(request, 'post')
+              .yields(null, {}, validXML);
+
+            order.search.post({
+                'order_id': 15455
+            }, function (err, results) {
+                assert.equal(err, null);
+                assert.deepEqual(results, validJSON);
                 done();
             });
         });

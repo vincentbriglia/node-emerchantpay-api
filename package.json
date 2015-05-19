@@ -13,11 +13,13 @@
     "async": "^0.9.0",
     "lodash": "^3.8.0",
     "request": "^2.55.0",
+    "revalidator": "^0.3.1",
     "walk": "^2.3.9",
     "walkdir": "0.0.9",
     "xml2js": "^0.4.8"
   },
   "devDependencies": {
+    "debug": "^2.2.0",
     "gulp": "^3.8.11",
     "gulp-coveralls": "^0.1.4",
     "gulp-eslint": "^0.11.1",
