@@ -39,6 +39,7 @@ gulp.task('eslint', function () {
     return gulp.src([
             './lib/**/*.js',
             './test/**/*.js',
+            './example/**/*.js',
             './gulpfile.js'
         ])
         .pipe(eslint())
