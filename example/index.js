@@ -14,7 +14,7 @@ orderAPI.search.post({
     date: '2015-05-04'
 }, function (err, results) {
     if (err) {
-        console.log('err', err);
+        console.log('err', err.name, err.message);
     }
     console.log(JSON.stringify(results));
 });
