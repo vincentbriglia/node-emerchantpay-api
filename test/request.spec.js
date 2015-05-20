@@ -7,11 +7,8 @@ var assert = require('assert'),
 
 describe('eMerchantPay API Request', function () {
 
-    var validXML = '<?xml version="1.0" encoding="UTF-8"?><orders><num_records>0</num_records></orders>';
-    //     clientId = 123456,
-    //     apiKey = '164684684684684',
-    //     validJSON = JSON.parse('{"orders":{"num_records":["0"]}}'),
-    //     invalidXML = '<?xml version="1.0" encoding="UTF-8"?><orders<num_records>0</num_records></orders>';
+    var validXML = '<?xml version="1.0" encoding="UTF-8"?><orders><num_records>0</num_records></orders>',
+        errorXML = '<?xml version="1.0" encoding="UTF-8"?><failure><errors><error><code>B0GUS</code><text>error</text></error></errors></failure>';
 
     describe('configuration', function () {
 
@@ -29,16 +26,6 @@ describe('eMerchantPay API Request', function () {
                 done();
             });
         });
-
-        // var requestParams = {
-        //     uri: '/order/search/',
-        //     options: {
-        //         method: 'POST',
-        //         form: params
-        //     },
-        //     validationSchema: validationSchema,
-        //     context: self
-        // };
 
         it('should throw if either api_key is missing', function (done) {
             makeRequest({
@@ -83,7 +70,7 @@ describe('eMerchantPay API Request', function () {
             });
         });
 
-        it('should throw if uri is missing', function (done) {
+        it('should succeed with validXML', function (done) {
 
             sinon
               .stub(request, 'post')
@@ -101,10 +88,40 @@ describe('eMerchantPay API Request', function () {
             }, function (err, results) {
                 assert.equal(err, null);
                 assert.equal(results, validXML);
+
+                request.post.restore();
+
                 done();
             });
         });
 
+        it('should throw an error with a 200 "failure" response from eMerchantPay', function (done) {
+
+            sinon
+              .stub(request, 'post')
+              .yields(null, {}, errorXML);
+
+            makeRequest({
+                uri: 'http://proxy.aws/service/order/search',
+                options: {
+                    method: 'POST',
+                    form: {
+                        'client_id': 123,
+                        'api_key': '123'
+                    }
+                },
+                context: {
+                    config: {
+                        parseXML: true
+                    }
+                }
+            }, function (err, result) {
+                assert.equal(_.isError(err), true);
+                assert.equal(result, null);
+                request.post.restore();
+                done();
+            });
+        });
 
     });
 
