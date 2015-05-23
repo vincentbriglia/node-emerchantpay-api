@@ -5,4 +5,4 @@ before_script:
   - npm install -g gulp
   - npm install -g codeclimate-test-reporter
 script: npm run-script coveralls
-after_script: codeclimate < ./coverage/**/lcov.info
+after_script: codeclimate < ./coverage/lcov.info
