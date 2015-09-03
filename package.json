@@ -10,24 +10,24 @@
   "author": "Vincent Briglia <vincent@jivaro.com>",
   "license": "ISC",
   "dependencies": {
-    "async": "^1.0.0",
-    "lodash": "^3.8.0",
-    "request": "^2.55.0",
+    "async": "^1.4.2",
+    "lodash": "^3.10.1",
+    "request": "^2.61.0",
     "revalidator": "^0.3.1",
     "walk": "^2.3.9",
-    "walkdir": "0.0.9",
-    "xml2js": "^0.4.8"
+    "walkdir": "0.0.10",
+    "xml2js": "^0.4.11"
   },
   "devDependencies": {
     "debug": "^2.2.0",
-    "gulp": "^3.8.11",
+    "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
-    "gulp-eslint": "^0.12.0",
-    "gulp-istanbul": "^0.9.0",
-    "gulp-mocha": "^2.0.1",
-    "mocha": "^2.2.4",
+    "gulp-eslint": "^1.0.0",
+    "gulp-istanbul": "^0.10.0",
+    "gulp-mocha": "^2.1.3",
+    "mocha": "^2.3.0",
     "mocha-sinon": "^1.1.4",
-    "sinon": "^1.14.1"
+    "sinon": "^1.16.1"
   },
   "directories": {
     "lib": "lib",
