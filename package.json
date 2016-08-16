@@ -1,31 +1,34 @@
 {
   "name": "node-emerchantpay-api",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "emerchantpay web service API library for node backend",
   "main": "./lib/index.js",
   "scripts": {
     "test": "gulp test",
     "coveralls": "gulp report-coverage"
   },
-  "author": "Vincent Briglia <vincent@jivaro.com>",
+  "author": {
+    "name": "Vincent Briglia",
+    "url": "https://github.com/vincentbriglia"
+  },
   "license": "ISC",
   "dependencies": {
-    "async": "^1.4.2",
+    "async": "^2.0.1",
     "debug": "^2.2.0",
-    "lodash": "^3.10.1",
+    "lodash": "^4.15.0",
     "request": "^2.63.0",
     "revalidator": "^0.3.1",
     "walk": "^2.3.9",
-    "walkdir": "0.0.10",
+    "walkdir": "0.0.11",
     "xml2js": "^0.4.12"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
-    "gulp-eslint": "^1.0.0",
-    "gulp-istanbul": "^0.10.0",
-    "gulp-mocha": "^2.1.3",
-    "mocha": "^2.3.3",
+    "gulp-eslint": "^3.0.1",
+    "gulp-istanbul": "^1.1.0",
+    "gulp-mocha": "^3.0.1",
+    "mocha": "^3.0.2",
     "mocha-sinon": "^1.1.4",
     "sinon": "^1.17.0"
   },
