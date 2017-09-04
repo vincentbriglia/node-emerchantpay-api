@@ -12,6 +12,7 @@ script: npm run-script coveralls
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
 after_script: codeclimate < ./coverage/lcov.info
 env:
   global:
