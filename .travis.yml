@@ -3,17 +3,21 @@ node_js:
   - '4'
   - '5'
   - '6'
+  - '7'
+  - '8'
 before_install:
   - npm install -g npm
 before_script:
   - npm install -g gulp
   - npm install -g codeclimate-test-reporter
-script: npm run-script coveralls
+script: gulp coverage
 branches:
   only:
     - master
     - /^greenkeeper/.*$/
-after_script: codeclimate < ./coverage/lcov.info
+after_script:
+  - gulp report-coverage
+  - gulp report-codacy
 env:
   global:
     secure: x/eAn0aAE5nWJC+2snw8B8JjeP1H6zlwUXTa1IgfQ3vua9Cnh7ZuUk0h4AKRkrufc1WJlRHX5r2VBzg8RN/7Fw0/uCBnk+3IqYjl2HXJkWKV1F+xsYMkyy8Tjjr1Tgo8w//GKFb1H55qc9DnvSk/MWA53EI6+ygZhC8pYIoHqtRUF36ckbbmd7VZiYzfJWOdiQV1MbWaRam3PxVfxsyudbTFP5sp7UY0bO4IHxKRs8H4tpkEbaszHjmbQmu/rAdho8CUs7XZsk1FGWvTJ4npLuFAjsCvOtEviKsw6q6jBcHPfvSZPW1TStwTfoVQfsJGiEGmt4YB4LUfwoZjL6Ov6hkOVFmNhd37+4iy3VzDuj2DGEewh53epGtd+lpQzq4hjxsnkr8gKONSwgUqSIlTR13Ghle28LOInDwhrJi3jIluHOrmUWfTC8JrO+AKjXAgCCqZB74cYIwRfN6wuxjHk+fc2BgjPAyELTW2yx62u6tORBhW/QBoOnITjkbDaz9SNYKYUmSi9UrcOrGnW3lBuAG7m1DxM5rvXnYjf1TrZStHRRGEXj4Hxu03JRexH7O9G1w16RkYTkDaj9YMgPNgh3Sk+D6I2Z5UTnGMdsY7czJu/2reTnAknzTY4GdshKIIR5DW4swiCpqsisxwT4QiIPYvyi8cqRZ1xFcsBKPcqFQ=
