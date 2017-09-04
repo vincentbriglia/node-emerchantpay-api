@@ -5,6 +5,8 @@
 [![Npm Version](https://badge.fury.io/js/node-emerchantpay-api.svg)](http://badge.fury.io/js/node-emerchantpay-api)
 
 # node-emerchantpay-api
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/vincentbriglia/node-emerchantpay-api.svg)](https://greenkeeper.io/)
 emerchantpay web service API library for node backend
 
 ## Status
