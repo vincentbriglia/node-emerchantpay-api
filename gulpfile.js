@@ -4,6 +4,8 @@ var gulp = require('gulp'),
   mocha = require('gulp-mocha'),
   eslint = require('gulp-eslint'),
   istanbul = require('gulp-istanbul'),
+  codacy = require('gulp-codacy'),
+  debug = require('gulp-debug'),
   coveralls = require('gulp-coveralls');
 
 gulp.task('test', ['eslint'], function() {
@@ -37,8 +39,18 @@ gulp.task('coverage', ['eslint'], function(done) {
     });
 });
 
-gulp.task('report-coverage', ['coverage'], function() {
-  return gulp.src('./coverage/**/lcov.info').pipe(coveralls());
+gulp.task('report-coverage', function() {
+  return gulp
+    .src('./coverage/**/lcov.info')
+    .pipe(debug())
+    .pipe(coveralls());
+});
+
+gulp.task('report-codacy', function() {
+  return gulp
+    .src('./coverage/**/lcov.info')
+    .pipe(debug())
+    .pipe(codacy());
 });
 
 gulp.task('eslint', function() {
