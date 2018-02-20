@@ -1,6 +1,6 @@
 {
   "name": "node-emerchantpay-api",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "emerchantpay web service API library for node backend",
   "main": "./lib/index.js",
   "scripts": {
@@ -46,9 +46,7 @@
     "type": "git",
     "url": "git+https://github.com/vincentbriglia/node-emerchantpay-api.git"
   },
-  "keywords": [
-    "emerchantpay"
-  ],
+  "keywords": ["emerchantpay"],
   "bugs": {
     "url": "https://github.com/vincentbriglia/node-emerchantpay-api/issues"
   },
